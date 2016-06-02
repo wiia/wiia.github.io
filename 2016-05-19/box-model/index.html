@@ -84,15 +84,16 @@
 
 
 
-<meta name="description" content="一个描述。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Wii">
-<meta property="og:url" content="http://wiia.github.io/index.html">
+<meta name="description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Box Model">
+<meta property="og:url" content="http://wiia.github.io/2016-05-19/box-model/index.html">
 <meta property="og:site_name" content="Wii">
-<meta property="og:description" content="一个描述。">
+<meta property="og:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
+<meta property="og:updated_time" content="2016-06-02T15:57:09.413Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wii">
-<meta name="twitter:description" content="一个描述。">
+<meta name="twitter:title" content="Box Model">
+<meta name="twitter:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
 
 
 
@@ -110,7 +111,7 @@
   };
 </script>
 
-  <title> Wii </title>
+  <title> Box Model | Wii </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -131,9 +132,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-right 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -200,9 +199,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -222,106 +221,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016-05-22/responsive-design/" itemprop="url">
-                  移动端设备的响应式初步
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-22T23:30:16+08:00" content="2016-05-22">
-              2016-05-22
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><p><code>物理像素（physical pixel）</code>是屏幕的最小物理显示单元，也就是屏幕分辨率中计算的像素点。<br>而我们在网页设计中设置的尺寸(css像素)则属于<code>设备独立像素（device independent pixels)</code>（或者dip/dips/密度无关像素…都是指的它)，用来表示逻辑像素中的一个“点”。</p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016-05-22/responsive-design/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016-05-19/box-model/" itemprop="url">
-                  Box Model
-                </a>
+                Box Model
               
             
           </h1>
@@ -361,22 +261,36 @@
       
 
       
-        
-          <p>在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016-05-19/box-model/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
+        <p>在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。<br><a id="more"></a><br>简单的说：<br><strong>conent area</strong> - content edge/inner edge - content box<br><strong>padding area</strong> - padding edge - padding box<br><strong>border area</strong> - border edge - border box<br><strong>margin area</strong>  - margin edge/outer edge - margin box（只有它的 background 是透明的）</p>
+<p><code>margin</code>：<code>&lt;length&gt;</code>|<code>&lt;percentage&gt;</code>|<code>auto</code> | <code>inherit</code><br><code>margin</code>：<code>&lt;length&gt;</code>|<code>&lt;percentage&gt;</code> | <code>inherit</code></p>
+<p>初始值都为0；<br>它们的百分数值，包括垂直方向上的，都是以 containing block 的<code>width</code>值为基准；<br>margin 的<code>&lt;length&gt;</code>值可以为负数；<br>它们在一些 table 元素中会失效，其中<code>margin</code>不作用于<strong>非替换inline元素</strong>的垂直方向。</p>
+<h4 id="Collapsing-margins"><a href="#Collapsing-margins" class="headerlink" title="Collapsing margins"></a>Collapsing margins</h4><p>多个 <strong>相邻的</strong> <strong>垂直</strong><code>margin</code>会折叠。</p>
+<p>那么，什么情况会认为 margins 之间是 adjoining 的呢？<br>首先这几个 margins 所属的 boxes 都要满足：</p>
+<ul>
+<li>in-flow；</li>
+<li>是在同一个 BFC 中的 block-level box；</li>
+</ul>
+<p>所以有很多时候都是不会发生折叠的：<br><code>floated box</code> ，<code>absolutely positioned box</code>以及<code>根元素</code>都会 out-of-flow，还有 <code>inline-block box</code> 这些不属于 block-level box 的，<br>它们的 margin 不会和任何其他 margin 发生折叠，包括和它内部的 in-flow 子元素；<br>还有其他的会产生新的 BFC 的情况，当元素<code>overflow</code>值是不是<code>visible</code>时，内部的子元素和它已经不属于同一个 BFC ，所以也不会 collapse。</p>
+<ul>
+<li>然后当然要满足的是，<code>margin</code>要属于垂直相邻<strong>vertically-adjacent</strong>的 box edges，意味着中间没有 <code>line boxes</code>，<code>clearance</code>，垂直方向的<code>padding</code>，<code>border</code>这些东西相隔。</li>
+</ul>
+<p>除了上下相邻的两个 box 之间的 bottom、top margin 以外，<br>第一个子元素和父元素的 top margin；<br>最后一个子元素和 <code>height</code>为<code>auto</code>的父元素的 bottom margin；</p>
+<p>或者如果一个元素的 box 里面<strong>什么也没有</strong>（没有 <code>line boxes</code>，<code>clearance</code>，垂直方向的<code>padding</code>，<code>border</code>，而且<code>min-height：0</code> ， <code>height：0/auto</code>,不过可以包含in-flow子元素的collapsed margin）的时候，它自己的 bottom、top margin；<br>都是垂直相邻的。</p>
+<p>总的来说，在一个flow中，block-level box <code>margin</code>的作用是为了保障它的  border box 在当前的 BFC 中，周围有一定的区域内是没有其它元素 border box 的，所以两个margin相邻时，只要取一个最大值就可以保证相同的效果。</p>
+
+      
+    </div>
+
+    <div>
+      
         
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -384,115 +298,36 @@
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016-05-15/visual-formatting-model-1/" rel="next" title="视觉格式化模型（一）">
+                <i class="fa fa-chevron-left"></i> 视觉格式化模型（一）
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016-05-15/visual-formatting-model-1/" itemprop="url">
-                  视觉格式化模型（一）
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-15T01:31:16+08:00" content="2016-05-15">
-              2016-05-15
-            </time>
-          </span>
-
-          
-
-          
+              <a href="/2016-05-22/responsive-design/" rel="prev" title="移动端设备的响应式初步">
+                移动端设备的响应式初步 <i class="fa fa-chevron-right"></i>
+              </a>
             
-          
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <p>最近遇到一些基础细节问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。<br>(没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆 )<br>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016-05-15/visual-formatting-model-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -500,6 +335,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -519,8 +358,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -563,6 +411,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collapsing-margins"><span class="nav-number">1.</span> <span class="nav-text">Collapsing margins</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -659,6 +518,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
