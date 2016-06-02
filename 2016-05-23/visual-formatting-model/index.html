@@ -1,0 +1,625 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="PS3," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="最近遇到一些基础细节问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。（没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视觉格式化模型（一）">
+<meta property="og:url" content="http://wiia.github.io/2016-05-23/visual-formatting-model/index.html">
+<meta property="og:site_name" content="Wii">
+<meta property="og:description" content="最近遇到一些基础细节问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。（没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆）">
+<meta property="og:image" content="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png">
+<meta property="og:updated_time" content="2016-05-26T06:05:20.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="视觉格式化模型（一）">
+<meta name="twitter:description" content="最近遇到一些基础细节问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。（没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆）">
+<meta name="twitter:image" content="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 视觉格式化模型（一） | Wii </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wii</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">我只是想试一下subtitle</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                视觉格式化模型（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-23T01:31:16+08:00" content="2016-05-23">
+              2016-05-23
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近遇到一些基础细节问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。<br>（没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆）<br><a id="more"></a></p>
+<h4 id="视觉格式化模型-visual-formatting-model"><a href="#视觉格式化模型-visual-formatting-model" class="headerlink" title="视觉格式化模型 visual formatting model"></a>视觉格式化模型 visual formatting model</h4><hr>
+<p>视觉格式化模型关系到浏览器如何在屏幕上渲染dom树。文档中的每个元素会根据box model生成0到多个boxes，而这些盒子的布局决定因素有：</p>
+<ul>
+<li>盒子的尺寸和类型；</li>
+<li>定位方案 positioning scheme：normal flow, float, and absolute positioning；也就是说，<code>display</code>最终的计算值还要参考<code>position</code>和<code>float</code>属性。</li>
+<li>dom树中元素之间的关系；</li>
+<li>viewport大小，图片尺寸等； </li>
+</ul>
+<p>（视觉模型对 <code>continuous media</code> 和 <code>paged media</code>都适用，规范中没有对渲染规则面面俱到，所以一些细节在不同浏览器中表现是不一样的。）</p>
+<h4 id="viewport和包含块containing-block"><a href="#viewport和包含块containing-block" class="headerlink" title="viewport和包含块containing block"></a>viewport和包含块containing block</h4><p>（在continuous media中）<br>用户通过浏览器提供的<strong>viewport</strong>来查看页面，viewport是根元素html的包含块<strong>initial containing block</strong> ，所以viewport大小影响着文档的布局。<br>当viewport小于<strong>渲染文档的canvas</strong>，浏览器就会出现滚动条。</p>
+<p>一个盒子（box）为它的后代建立了包含块<strong>containing block</strong>，也就是说包含块并不指 principal box（见下文）本身 。</p>
+<p>（每个盒子的位置和大小参考于它的包含块，但并不被它所限制，可能会overflow.）</p>
+<p>非根节点元素的包含块：</p>
+<ul>
+<li><code>position：</code> <code>relative</code>/<code>static</code>：</li>
+<li><code>position：</code> <code>fixed</code>：包含块和<code>&lt;html&gt;</code>一样由viewport生成</li>
+<li><code>position：</code> <code>position</code>：<h4 id="Box’s-types"><a href="#Box’s-types" class="headerlink" title="Box’s types"></a>Box’s types</h4></li>
+</ul>
+<hr>
+<p>在视觉格式化模型中，<code>display</code>会声明盒子的类型，影响它在其中的表现。一旦确定了<code>display</code>属性的值，元素会产生一个<strong>principal box</strong>，在里面包含后代boxes，产生context，同时也是这个盒子参与到positioning scheme中。<br>（一些元素还会产生额外的盒子additional boxes,这些框的位置会参考于principal box<br><code>display:list-item</code>会使<code>&lt;li&gt;</code>另外给项目符号生成一个marker box）</p>
+<h4 id="Block-boxes"><a href="#Block-boxes" class="headerlink" title="Block boxes"></a>Block boxes</h4><p>我们通常意义讲的,当 一个元素的<strong>principal box</strong>为<strong>block box</strong>时，它有两个身份：</p>
+<ul>
+<li><code>display</code>：<code>block</code>/ <code>list-item</code> /<code>table</code>：作为<strong>block-level box</strong>,参与到BFC中，产生它的元素称为Block-level element。</li>
+<li><code>display</code>：<code>block</code> /<code>list-item</code>/ <code>inline-block</code>（非替换元素）：它又同时是一个<strong>block container box</strong>，产生它的元素又叫block container element。</li>
+</ul>
+<p>同时为block-level box和block container box的盒子称为block box，所以其实关系就是：<br>盗图。<br><img src="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png" alt="enter image description here"></p>
+<h4 id="Inline-boxes"><a href="#Inline-boxes" class="headerlink" title="Inline boxes"></a>Inline boxes</h4><p>同样，inline boxes也会区分它在父级上下文当中的角色，以及盒子内部对后代的影响。</p>
+<ul>
+<li><code>display</code>：<code>inline</code> /<code>inline-table</code> /<code>inline-block</code>：Inline-level element -&gt; inline-level box ，参与IFC。<br>但是一些元素的盒子内部没有生成IFC，比如虽然是inline-level但是是替换元素的<code>&lt;img&gt;</code>；<br>以及 <code>display：inline-block</code>的元素，虽然生成的是inline-level box，但是盒子内部会格式化为一个block box，（所以它生成的是一个principal inline-level block container）<blockquote>
+<p>They  are called <strong>atomic inline-level boxes</strong> because they participate in their inline formatting context as a single opaque box.</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><code>display</code>：<code>inline</code>（非替换元素）：Inline element  -&gt; inline box<br>此时要求它的content也要在IFC中。</li>
+</ul>
+<h4 id="Anonymous-boxes"><a href="#Anonymous-boxes" class="headerlink" title="Anonymous boxes"></a>Anonymous boxes</h4><p>（匿名框的属性往往无法设置， inheritable properties会继承自外层的非匿名框，计算百分比值的时候也是这样，不会参照于匿名框；非继承的属性就保持它的初始值）<br>上面提到的block container box，在这个盒子中有两种情况：</p>
+<ul>
+<li>只包含block-level boxes。</li>
+<li>产生IFC，即只包含inline-level boxes。</li>
+</ul>
+<p>而匿名框的产生就可以避免BFC和IFC同时出现<br>比如出现了这种情况：<br>在一个block container box里同时出现了inline content 和 block content<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;</span><br><span class="line">  Some <span class="built_in">text</span></span><br><span class="line">  &lt;p&gt;More <span class="built_in">text</span>&lt;/p&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure></p>
+<p>只要有一个block-level box包含在里面，就会强制它符合第一种情况，所以要给“Some text”加上一个<strong>anonymous block box</strong></p>
+<p>或者还有一种类似的情况，在一个inline box里出现了block-level box<br>（我实在想不出什么情况下会这样用，不过没关系我们先讲道理）</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123; <span class="attribute">display</span>: inline &#125;</span><br><span class="line"><span class="selector-tag">span</span> &#123; <span class="attribute">display</span>: block &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;</span><br><span class="line">  This <span class="keyword">is</span> anonymous <span class="built_in">text</span> <span class="keyword">before</span> <span class="keyword">the</span> SPAN.</span><br><span class="line">  &lt;span&gt;This <span class="keyword">is</span> <span class="keyword">the</span> content <span class="keyword">of</span> SPAN.&lt;/span&gt;</span><br><span class="line">  This <span class="keyword">is</span> anonymous <span class="built_in">text</span> <span class="keyword">after</span> <span class="keyword">the</span> SPAN.</span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+<p>所以这个inline box （以及同一个行框中的祖先inline boxes，如果有的话 ）会被里面的若干个连续的block-level boxes 分成两个anonymous block box。这样，他们三个就形成了兄弟关系。</p>
+<p>（当然，这种情况下inline box上如果设置了属性值，也可以控制匿名框的属性，比如例子中的<code>&lt;p&gt;</code>元素）</p>
+<p>更常见的情况是文本直接出现在block container box中：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>Some <span class="tag">&lt;<span class="name">em</span>&gt;</span>emphasized<span class="tag">&lt;/<span class="name">em</span>&gt;</span> text<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这时候<code>&lt;p&gt;</code>的block container box就属于产生IFC的第二种情况。因为”Some”和”text”不在inline element中，所以<code>&lt;p&gt;</code>元素就给它们的生成了两个<strong>anonymous inline boxes</strong></p>
+<p>另外：<br><code>display：none</code>使得元素以及它的子元素完全从<strong>formatting structure </strong>中移除，不会产生任何boxes，也不会影响布局；即便是子元素中再次声明其他的<code>display</code>值也不会覆盖。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/PS3/" rel="tag">#PS3</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016-05-12/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016-05-26/视觉格式化模型（visual formatting model）/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wiia" />
+          <p class="site-author-name" itemprop="name">wiia</p>
+          <p class="site-description motion-element" itemprop="description">一个描述。</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#视觉格式化模型-visual-formatting-model"><span class="nav-number">1.</span> <span class="nav-text">视觉格式化模型 visual formatting model</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#viewport和包含块containing-block"><span class="nav-number">2.</span> <span class="nav-text">viewport和包含块containing block</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Box’s-types"><span class="nav-number">3.</span> <span class="nav-text">Box’s types</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Block-boxes"><span class="nav-number">4.</span> <span class="nav-text">Block boxes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Inline-boxes"><span class="nav-number">5.</span> <span class="nav-text">Inline boxes</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Anonymous-boxes"><span class="nav-number">6.</span> <span class="nav-text">Anonymous boxes</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wiia</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
