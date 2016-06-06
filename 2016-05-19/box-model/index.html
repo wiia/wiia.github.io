@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://wiia.github.io/2016-05-19/box-model/index.html">
 <meta property="og:site_name" content="Wii">
 <meta property="og:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
-<meta property="og:updated_time" content="2016-06-04T09:19:26.622Z">
+<meta property="og:updated_time" content="2016-06-06T08:41:35.248Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Box Model">
 <meta name="twitter:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
@@ -270,7 +270,7 @@
 <li>in-flow；</li>
 <li>是在同一个 BFC 中的 block-level box；</li>
 </ul>
-<p>所以有很多时候都是不会发生折叠的：<br><code>floated box</code> ，<code>absolutely positioned box</code>以及<code>根元素</code>都会 out-of-flow，还有 <code>inline-block box</code> 这些不属于 block-level box 的，<br>它们的 margin 不会和任何其他 margin 发生折叠，包括和它内部的 in-flow 子元素；<br>还有其他的会产生新的 BFC 的情况，当元素<code>overflow</code>值是不是<code>visible</code>时，内部的子元素和它已经不属于同一个 BFC ，所以也不会 collapse。</p>
+<p>所以有很多时候都是不会发生折叠的：<br><code>floated box</code> ，<code>absolutely positioned box</code>以及<code>根元素</code>都会 out-of-flow，还有 <code>inline-block box</code> 这些不属于 block-level box 的，<br>它们的 margin 不会和任何其他 margin 发生折叠，包括和它内部的 in-flow 子元素；<br>还有其他的会产生新的 BFC 的情况，当元素<code>overflow</code>值不是<code>visible</code>时，内部的子元素和它已经不属于同一个 BFC ，所以也不会 collapse。</p>
 <ul>
 <li>然后当然要满足的是，<code>margin</code>要属于垂直相邻<strong>vertically-adjacent</strong>的 box edges，意味着中间没有 <code>line boxes</code>，<code>clearance</code>，垂直方向的<code>padding</code>，<code>border</code>这些东西相隔。</li>
 </ul>

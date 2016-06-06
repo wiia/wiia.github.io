@@ -1548,7 +1548,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2582ff;
+  background: #01dfff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2424,4 +2424,138 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+/**
+ * Obsidian style
+ * ported by Alexander Marenin (http://github.com/ioncreature)
+ */
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  background: #282b2e;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-selector-id {
+  color: #93c763;
+}
+
+.hljs-number {
+  color: #ffcd22;
+}
+
+.hljs {
+  color: #e0e2e4;
+}
+
+.hljs-attribute {
+  color: #668bb0;
+}
+
+.hljs-code,
+.hljs-class .hljs-title,
+.hljs-section {
+  color: white;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #d39745;
+}
+
+.hljs-meta {
+  color: #557182;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-bullet,
+.hljs-subst,
+.hljs-emphasis,
+.hljs-type,
+.hljs-built_in,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-tag,
+.hljs-template-variable {
+  color: #8cbbad;
+}
+
+.hljs-string,
+.hljs-symbol {
+  color: #ec7600;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion {
+  color: #818e96;
+}
+
+.hljs-selector-class {
+  color: #A082BD
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-doctag,
+.hljs-title,
+.hljs-section,
+.hljs-type,
+.hljs-name,
+.hljs-strong {
+  font-weight: bold;
+}
+
+#output {
+  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  color: #555;
+}
+#output p {
+  margin: 0 0 20px 0;
+}
+#output h1,
+#output h2,
+#output h3,
+#output h4,
+#output h5 {
+  margin: 20px 0 15px;
+}
+#output h6 {
+  margin: 20px 0 20px;
+  font-size: 1em;
+  font-weight: normal;
+  color: #b3b3b3;
+}
+#output hr {
+  margin: 15px 0 25px;
+}
+#output code {
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-size: 13px;
+  word-break: break-all;
+  background: #eee;
+}
+#output pre {
+  margin: 20px 0;
+  padding: 15px;
+  font-family: consolas, Menlo, "PingFang SC", "Microsoft YaHei", monospace;
+  font-size: 13px;
+  line-height: 1.6;
+  background: #f7f7f7;
+}
+#output pre code {
+  padding: 0;
+  background: transparent;
 }
