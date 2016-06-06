@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://wiia.github.io/2016-05-19/box-model/index.html">
 <meta property="og:site_name" content="Wii">
 <meta property="og:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
-<meta property="og:updated_time" content="2016-06-02T15:57:09.413Z">
+<meta property="og:updated_time" content="2016-06-04T09:19:26.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Box Model">
 <meta name="twitter:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
@@ -146,7 +146,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">我只是想试一下subtitle</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -261,8 +261,8 @@
       
 
       
-        <p>在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。<br><a id="more"></a><br>简单的说：<br><strong>conent area</strong> - content edge/inner edge - content box<br><strong>padding area</strong> - padding edge - padding box<br><strong>border area</strong> - border edge - border box<br><strong>margin area</strong>  - margin edge/outer edge - margin box（只有它的 background 是透明的）</p>
-<p><code>margin</code>：<code>&lt;length&gt;</code>|<code>&lt;percentage&gt;</code>|<code>auto</code> | <code>inherit</code><br><code>margin</code>：<code>&lt;length&gt;</code>|<code>&lt;percentage&gt;</code> | <code>inherit</code></p>
+        <p>在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。<br><a id="more"></a><br>简单的说，在一个盒子中：<br><strong>conent area</strong> - content edge/inner edge - content box<br><strong>padding area</strong> - padding edge - padding box<br><strong>border area</strong> - border edge - border box<br><strong>margin area</strong>  - margin edge/outer edge - margin box（只有它的 background 是透明的）</p>
+<p><code>margin</code>：<code>&lt;length&gt;</code> | <code>&lt;percentage&gt;</code> | <code>auto</code> | <code>inherit</code><br><code>margin</code>：<code>&lt;length&gt;</code> | <code>&lt;percentage&gt;</code> | <code>inherit</code></p>
 <p>初始值都为0；<br>它们的百分数值，包括垂直方向上的，都是以 containing block 的<code>width</code>值为基准；<br>margin 的<code>&lt;length&gt;</code>值可以为负数；<br>它们在一些 table 元素中会失效，其中<code>margin</code>不作用于<strong>非替换inline元素</strong>的垂直方向。</p>
 <h4 id="Collapsing-margins"><a href="#Collapsing-margins" class="headerlink" title="Collapsing margins"></a>Collapsing margins</h4><p>多个 <strong>相邻的</strong> <strong>垂直</strong><code>margin</code>会折叠。</p>
 <p>那么，什么情况会认为 margins 之间是 adjoining 的呢？<br>首先这几个 margins 所属的 boxes 都要满足：</p>
@@ -374,25 +374,18 @@
                src="/images/avatar.gif"
                alt="wiia" />
           <p class="site-author-name" itemprop="name">wiia</p>
-          <p class="site-description motion-element" itemprop="description">一个描述。</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
-          
-            <div class="site-state-item site-state-tags">
-              
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">标签</span>
-              
-            </div>
           
 
         </nav>

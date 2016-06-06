@@ -84,25 +84,16 @@
 
 
 
-<meta name="description" content="视觉格式化模型（visual formatting model）
-.note-content  {font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif;}
-
-.note-content">
+<meta name="description" content="最近遇到一些基础细节问题，所以开始想要对这些内容重新建立一下认知。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Wii">
-<meta property="og:url" content="http://wiia.github.io/2016-05-26/视觉格式化模型（visual formatting model）/index.html">
+<meta property="og:title" content="关于 CSS Specification">
+<meta property="og:url" content="http://wiia.github.io/2016-05-01/about-css-specification/index.html">
 <meta property="og:site_name" content="Wii">
-<meta property="og:description" content="视觉格式化模型（visual formatting model）
-.note-content  {font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif;}
-
-.note-content">
-<meta property="og:updated_time" content="2016-05-05T01:29:38.989Z">
+<meta property="og:description" content="最近遇到一些基础细节问题，所以开始想要对这些内容重新建立一下认知。">
+<meta property="og:updated_time" content="2016-06-04T09:14:25.121Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Wii">
-<meta name="twitter:description" content="视觉格式化模型（visual formatting model）
-.note-content  {font-family: &apos;Helvetica Neue&apos;, Arial, &apos;Hiragino Sans GB&apos;, STHeiti, &apos;Microsoft YaHei&apos;, &apos;WenQuanYi Micro Hei&apos;, SimSun, Song, sans-serif;}
-
-.note-content">
+<meta name="twitter:title" content="关于 CSS Specification">
+<meta name="twitter:description" content="最近遇到一些基础细节问题，所以开始想要对这些内容重新建立一下认知。">
 
 
 
@@ -120,7 +111,7 @@
   };
 </script>
 
-  <title>  | Wii </title>
+  <title> 关于 CSS Specification | Wii </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -155,7 +146,7 @@
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
-  <p class="site-subtitle">我只是想试一下subtitle</p>
+  <p class="site-subtitle"></p>
 </div>
 
 <div class="site-nav-toggle">
@@ -183,42 +174,12 @@
         </li>
       
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-commonweal">
-          <a href="/404.html" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
-            
-            公益404
           </a>
         </li>
       
@@ -260,7 +221,7 @@
             
             
               
-                
+                关于 CSS Specification
               
             
           </h1>
@@ -272,8 +233,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-26T13:34:56+08:00" content="2016-05-26">
-              2016-05-26
+            <time itemprop="dateCreated" datetime="2016-05-01T17:02:31+08:00" content="2016-05-01">
+              2016-05-01
             </time>
           </span>
 
@@ -300,61 +261,23 @@
       
 
       
-        <!DOCTYPE html><html><head><title>视觉格式化模型（visual formatting model）</title><meta charset="utf-8"><link href="https://dn-maxiang.qbox.me/res-min/themes/marxico.css" rel="stylesheet"><style>
-.note-content  {font-family: 'Helvetica Neue', Arial, 'Hiragino Sans GB', STHeiti, 'Microsoft YaHei', 'WenQuanYi Micro Hei', SimSun, Song, sans-serif;}
-
-.note-content h1, .note-content h2, .note-content h3, .note-content h4, .note-content h5, .note-content h6, .note-content ul li {color: #168A16;}
-.note-content  {width: 70%; margin: 0 auto;}
-</style></head><body><div id="preview-contents" class="note-content">
-                        <div id="wmd-preview" class="preview-content"></div>
-                    <div id="wmd-preview-section-32" class="wmd-preview-section preview-content">
-
-<p>看过很多关于视觉格式化基础的文章、博客，对于盒模型、行框、文本框、BFC这些概念好像也有一定的了解。最近零零散散地遇到了一些问题，所以想对这些内容重新建立一下认知，干脆直接找了一些比较基础的部分、稳定版本的标准来读。 </p>
-
-</div><div id="wmd-preview-section-33" class="wmd-preview-section preview-content">
-
-<h4 id="视觉格式化模型visual-formatting-model">视觉格式化模型（visual formatting model）</h4>
-
-<p>视觉格式化模型关系到浏览器如何在屏幕上渲染dom树。文档中的每个元素会生成0到多个盒子，而 盒子布局的决定因素有：</p>
-
-<p>（视觉模型对 <code>continuous media</code> 和 <code>paged media</code> [ 啥？]都适用，规范中没有对渲染规则面面俱到，所以一些细节在不同浏览器中表现是不一样的。）</p>
-
-</div><div id="wmd-preview-section-34" class="wmd-preview-section preview-content">
-
-<h4 id="viewport">viewport</h4>
-
+        <p>最近遇到一些基础细节问题，所以开始想要对这些内容重新建立一下认知。<br><a id="more"></a><br>博客和书籍都是作者通过各种渠道获得信息，然后整理输出的产物，这些有非常大的参考价值；而阅读标准是你通过了解 CSS WG 的想法，然后总结思考建立自己基础体系的过程。<br>了解它的原理，可能会让你在使用的时候不只是套路。也许有些理论的讨论会认为有点脱离实际应用；也许一些细节你感受不到它有什么直接的作用；或者是这些在如今的前端体系中所占的比重在每个人心里都不同；<br>但我仍然认为，研读标准应该是一个前端学习过程中一个非常好的途径。</p>
+<h4 id="一些资源"><a href="#一些资源" class="headerlink" title="一些资源"></a>一些资源</h4><hr>
+<p>最新的CSS Snapshot：<br><a href="http://www.w3.org/TR/CSS" target="_blank" rel="external">http://www.w3.org/TR/CSS/</a></p>
+<p>（查看各种文档可以注意 url 是否是最新版本存放地址，比如还有以日期分类的各种具体版本<a href="http://www.w3.org/TR/2011/REC-CSS2-20110607/" target="_blank" rel="external">http://www.w3.org/TR/2011/REC-CSS2-20110607/</a>）</p>
+<p>其中一段介绍：</p>
 <blockquote>
-  <p>浏览器可以渲染多个<code>canvas</code>（一个用来渲染格式化结构的空间），每个canvas至少有一个<code>viewport</code>。 <br>
-    浏览器在continuous media中提供了viewport来展示文档，viewport大小影响着到文档的布局。 <br>
-    当<code>viewport</code>小于<strong>文档渲染 的canvas</strong>，就会出现滚动条。 <br>
-  continuous media中 根元素html的<code>包含块（initial containing block）</code>即：根据canvas原点和viewport的大小形成的</p>
+<p>When the first CSS specification was published, all of CSS was contained in one document that defined CSS Level 1. CSS Level 2 was defined also by a single, multi-chapter document. However for CSS beyond Level 2, the CSS Working Group chose to adopt a modular approach, where each module defines a part of CSS, rather than to define a single monolithic specification. This breaks the specification into more manageable chunks and allows more immediate, incremental improvement to CSS.</p>
+<p>Since different CSS modules are at different levels of stability, the CSS Working Group has chosen to publish this profile to define the current scope and state of Cascading Style Sheets as of late 2015. This profile includes only specifications that we consider stable and for which we have enough implementation experience that we are sure of that stability.</p>
 </blockquote>
+<hr>
+<p>CSS 基础的核心内容：</p>
+<p>目前稳定版本 2.1 <a href="http://www.w3.org/TR/CSS2/" target="_blank" rel="external">http://www.w3.org/TR/CSS2/</a><br>修订版WD 2.2 <a href="http://www.w3.org/TR/CSS22/" target="_blank" rel="external">http://www.w3.org/TR/CSS22/</a></p>
+<p>中文翻译情况：<a href="http://www.chinaw3c.org/translation.html" target="_blank" rel="external">http://www.chinaw3c.org/translation.html</a><br>其中CSS 2.1 ：<br><a href="https://www.w3.org/2005/11/Translations/Query?titleMatch=css%202.1&amp;lang=zh-hans&amp;search1=Submit" target="_blank" rel="external">https://www.w3.org/2005/11/Translations/Query?titleMatch=css+2.1&amp;lang=zh-hans&amp;search1=Submit</a></p>
+<hr>
+<p>了解一些更深入的细节和最新动态：</p>
+<p>WG进展状况：<a href="https://drafts.csswg.org/" target="_blank" rel="external">https://drafts.csswg.org/</a><br>邮件列表：<a href="http://lists.w3.org/Archives/Public/www-style/" target="_blank" rel="external">http://lists.w3.org/Archives/Public/www-style/</a><br>以及 <a href="https://www.w3.org/TR/#tr_CSS" target="_blank" rel="external">All Standards and Drafts：https://www.w3.org/TR/#tr_CSS</a><br>博客动态：<a href="http://lists.w3.org/Archives/Public/www-style/" target="_blank" rel="external">http://www.w3.org/blog/CSS/</a></p>
 
-<p>好了说人话，viewport相当于是根节点的包含块，这也就是为什么我们控制页面滚动条 只要设置<code>html</code>的<code>overflow</code>属性</p>
-
-</div><div id="wmd-preview-section-35" class="wmd-preview-section preview-content">
-
-<h5 id="包含块containing-block">包含块（containing block）</h5>
-
-<p>一个盒子（box）为它的后代建立了<code>包含块</code>，也就是说包含块并不指父元素本身The </p>
-
-<blockquote>
-  <p>phrase “a box’s containing block” means “the containing block in which <br>
-  the box lives”</p>
-</blockquote>
-
-<p>每个盒子的位置和大小参考于它的包含块，但并不被包含块所限制，包含块的定义如下：</p>
-
-</div><div id="wmd-preview-section-36" class="wmd-preview-section preview-content">
-
-<h5 id="the-types-of-boxes">（the types of boxes）</h5>
-
-<p>文档中的元素确定了<code>display</code>属性值，会生成一个<code>principal box</code>（主要的盒子？），就确定了box的类型，会在里面包含后代boxes，产生context（内容区），关系到定位情况。 <br>
-一些元素还会产生额外的盒子（additional boxes）,这些框的位置会参考于principal box（比如<code>list-item</code>元素）</p>
-
-</div><div id="wmd-preview-section-37" class="wmd-preview-section preview-content">
-
-<h5 id="块级元素block-level-elements-block-boxes">块级元素（block-level elements ）（block boxes）</h5></div><div id="wmd-preview-section-footnotes" class="preview-content"></div></div></body></html>
       
     </div>
 
@@ -378,13 +301,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016-05-23/visual-formatting-model/" rel="next" title="视觉格式化模型（一）">
-                <i class="fa fa-chevron-left"></i> 视觉格式化模型（一）
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016-05-15/visual-formatting-model-1/" rel="prev" title="视觉格式化模型（一）">
+                视觉格式化模型（一） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -447,25 +370,18 @@
                src="/images/avatar.gif"
                alt="wiia" />
           <p class="site-author-name" itemprop="name">wiia</p>
-          <p class="site-description motion-element" itemprop="description">一个描述。</p>
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
 
           
 
-          
-            <div class="site-state-item site-state-tags">
-              <a href="/tags">
-                <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">标签</span>
-              </a>
-            </div>
           
 
         </nav>
@@ -491,7 +407,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#视觉格式化模型visual-formatting-model"><span class="nav-number">1.</span> <span class="nav-text">视觉格式化模型（visual formatting model）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#viewport"><span class="nav-number">2.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#包含块containing-block"><span class="nav-number">2.1.</span> <span class="nav-text">包含块（containing block）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#the-types-of-boxes"><span class="nav-number">2.2.</span> <span class="nav-text">（the types of boxes）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#块级元素block-level-elements-block-boxes"><span class="nav-number">2.3.</span> <span class="nav-text">块级元素（block-level elements ）（block boxes）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些资源"><span class="nav-number">1.</span> <span class="nav-text">一些资源</span></a></li></ol></div>
             
           </div>
         </section>

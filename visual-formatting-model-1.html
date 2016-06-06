@@ -1,0 +1,486 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆">
+<meta property="og:type" content="website">
+<meta property="og:title" content="视觉格式化模型（一）">
+<meta property="og:url" content="http://wiia.github.io/visual-formatting-model-1.html">
+<meta property="og:site_name" content="Wii">
+<meta property="og:description" content="没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆">
+<meta property="og:image" content="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png">
+<meta property="og:updated_time" content="2016-06-06T05:07:12.810Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="视觉格式化模型（一）">
+<meta name="twitter:description" content="没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆">
+<meta name="twitter:image" content="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title>
+  
+
+  
+    视觉格式化模型（一） | Wii
+  
+</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right  ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Wii</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+    
+      <h6 id="-">没有把一些英文名词翻译成中文，可能会读起来有点绕。因为总觉得翻译之后略奇怪，而且容易混淆</h6>
+<p><a id="more"></a></p>
+<h4 id="-visual-formatting-model">视觉格式化模型 visual formatting model</h4>
+<hr>
+<p>视觉格式化模型关系到浏览器如何在屏幕上渲染dom树。文档中的每个元素会根据box model生成0到多个boxes，而这些盒子的布局决定因素有：</p>
+<ul>
+<li>盒子的尺寸和类型；</li>
+<li>定位方案 positioning scheme：normal flow, float, and absolute positioning；也就是说，<code>display</code>最终的计算值还要参考<code>position</code>和<code>float</code>属性。</li>
+<li>dom树中元素之间的关系；</li>
+<li>viewport大小，图片尺寸等； </li>
+</ul>
+<h6 id="-continuous-media-paged-media-">视觉模型对 <code>continuous media</code> 和 <code>paged media</code>都适用，规范中没有对渲染规则面面俱到，所以一些细节在不同浏览器中表现是不一样的。</h6>
+<h4 id="viewport-containing-block">viewport和包含块containing block</h4>
+<h6 id="-continuous-media-">在continuous media中</h6>
+<p>用户通过浏览器提供的<strong>viewport</strong>来查看页面，viewport是根元素html的包含块<strong>initial containing block</strong> ，所以viewport大小影响着文档的布局。
+当viewport小于<strong>渲染文档的canvas</strong>，浏览器就会出现滚动条。</p>
+<p>一个盒子（box）为它的后代建立了包含块<strong>containing block</strong>，也就是说包含块并不指 principal box（见下文）本身 。</p>
+<h6 id="-overflow-">每个盒子的位置和大小参考于它的包含块，但并不被它所限制，可能会overflow.</h6>
+<p>非根节点元素的包含块：</p>
+<ul>
+<li><code>position：</code> <code>relative</code>/<code>static</code>：</li>
+<li><code>position：</code> <code>fixed</code>：包含块和<code>&lt;html&gt;</code>一样由viewport生成</li>
+<li><code>position：</code> <code>position</code>：<h4 id="box-s-types">Box&#39;s types</h4>
+</li>
+</ul>
+<hr>
+<p>在视觉格式化模型中，<code>display</code>会声明盒子的类型，影响它在其中的表现。一旦确定了<code>display</code>属性的值，元素会产生一个<strong>principal box</strong>，在里面包含后代boxes，产生context，同时也是这个盒子参与到positioning scheme中。</p>
+<h6 id="-additional-boxes-principal-box-display-list-item-li-marker-box">一些元素还会产生额外的盒子additional boxes,这些框的位置会参考于principal box <code>display:list-item</code>会使<code>&lt;li&gt;</code>另外给项目符号生成一个marker box</h6>
+<h4 id="block-boxes">Block boxes</h4>
+<p>我们通常意义讲的,当 一个元素的<strong>principal box</strong>为<strong>block box</strong>时，它有两个身份：</p>
+<ul>
+<li><code>display</code>：<code>block</code>/ <code>list-item</code> /<code>table</code>：作为<strong>block-level box</strong>,参与到BFC中，产生它的元素称为Block-level element。</li>
+<li><code>display</code>：<code>block</code> /<code>list-item</code>/ <code>inline-block</code>（非替换元素）：它又同时是一个<strong>block container box</strong>，产生它的元素又叫block container element。</li>
+</ul>
+<p>同时为block-level box和block container box的盒子称为block box，所以其实关系就是：
+盗图。</p>
+<p><img src="https://developer.mozilla.org/@api/deki/files/5995/=venn_blocks.png" alt="enter image description here"></p>
+<h4 id="inline-boxes">Inline boxes</h4>
+<p>同样，inline boxes也会区分它在父级上下文当中的角色，以及盒子内部对后代的影响。</p>
+<ul>
+<li><code>display</code>：<code>inline</code> /<code>inline-table</code> /<code>inline-block</code>：Inline-level element -&gt; inline-level box ，参与IFC。
+但是一些元素的盒子内部没有生成IFC，比如虽然是inline-level但是是替换元素的<code>&lt;img&gt;</code>；
+以及 <code>display：inline-block</code>的元素，虽然生成的是inline-level box，但是盒子内部会格式化为一个block box，（所以它生成的是一个principal inline-level block container）<blockquote>
+<p>They  are called <strong>atomic inline-level boxes</strong> because they participate in their inline formatting context as a single opaque box.</p>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><code>display</code>：<code>inline</code>（非替换元素）：Inline element  -&gt; inline box 
+此时要求它的content也要在IFC中。</li>
+</ul>
+<h4 id="anonymous-boxes">Anonymous boxes</h4>
+<p>（匿名框的属性往往无法设置， inheritable properties会继承自外层的非匿名框，计算百分比值的时候也是这样，不会参照于匿名框；非继承的属性就保持它的初始值）
+上面提到的block container box，在这个盒子中有两种情况：</p>
+<ul>
+<li>只包含block-level boxes。</li>
+<li>产生IFC，即只包含inline-level boxes。</li>
+</ul>
+<p>而匿名框的产生就可以避免BFC和IFC同时出现
+比如出现了这种情况：
+在一个block container box里同时出现了inline content 和 block content</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+  Some text
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>More text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre><p>只要有一个block-level box包含在里面，就会强制它符合第一种情况，所以要给“Some text”加上一个<strong>anonymous block box</strong></p>
+<p>或者还有一种类似的情况，在一个inline box里出现了block-level box
+（我实在想不出什么情况下会这样用，不过没关系我们先讲道理）</p>
+<pre><code><span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">display</span>: inline }
+<span class="hljs-selector-tag">span</span> { <span class="hljs-attribute">display</span>: block }
+</code></pre><pre><code>&lt;p&gt;
+  This <span class="hljs-keyword">is</span> anonymous text before the SPAN.
+  &lt;span&gt;This <span class="hljs-keyword">is</span> the content <span class="hljs-keyword">of</span> SPAN.&lt;/span&gt;
+  This <span class="hljs-keyword">is</span> anonymous text after the SPAN.
+&lt;/p&gt;
+</code></pre><p>所以这个inline box （以及同一个行框中的祖先inline boxes，如果有的话 ）会被里面的若干个连续的block-level boxes 分成两个anonymous block box。这样，他们三个就形成了兄弟关系。</p>
+<p>（当然，这种情况下inline box上如果设置了属性值，也可以控制匿名框的属性，比如例子中的<code>&lt;p&gt;</code>元素）</p>
+<p>更常见的情况是文本直接出现在block container box中：</p>
+<pre><code><span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Some <span class="hljs-tag">&lt;<span class="hljs-name">em</span>&gt;</span>emphasized<span class="hljs-tag">&lt;/<span class="hljs-name">em</span>&gt;</span> text<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+</code></pre><p>这时候<code>&lt;p&gt;</code>的block container box就属于产生IFC的第二种情况。因为&quot;Some&quot;和&quot;text&quot;不在inline element中，所以<code>&lt;p&gt;</code>元素就给它们的生成了两个<strong>anonymous inline boxes</strong></p>
+<p>另外：
+<code>display：none</code>使得元素以及它的子元素完全从<strong>formatting structure </strong>中移除，不会产生任何boxes，也不会影响布局；即便是子元素中再次声明其他的<code>display</code>值也不会覆盖。</p>
+    
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wiia" />
+          <p class="site-author-name" itemprop="name">wiia</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wiia</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
