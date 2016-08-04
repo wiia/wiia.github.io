@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
+<meta name="description" content="做一个不写 z-index: 999; 的人。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Box Model">
-<meta property="og:url" content="http://wiia.github.io/2016-05-19/box-model/index.html">
-<meta property="og:site_name" content="Wii">
-<meta property="og:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
-<meta property="og:updated_time" content="2016-06-06T08:41:35.248Z">
+<meta property="og:title" content="关于 Stacking Contexts">
+<meta property="og:url" content="http://wiia.github.io/2016-08-04/about-stacking -contexts/index.html">
+<meta property="og:site_name" content="Zhao">
+<meta property="og:description" content="做一个不写 z-index: 999; 的人。">
+<meta property="og:updated_time" content="2016-08-04T15:53:44.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Box Model">
-<meta name="twitter:description" content="在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。">
+<meta name="twitter:title" content="关于 Stacking Contexts">
+<meta name="twitter:description" content="做一个不写 z-index: 999; 的人。">
 
 
 
@@ -111,7 +111,7 @@
   };
 </script>
 
-  <title> Box Model | Wii </title>
+  <title> 关于 Stacking Contexts | Zhao </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -142,7 +142,7 @@
   <div class="custom-logo-site-title">
     <a href="/"  class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
-      <span class="site-title">Wii</span>
+      <span class="site-title">Zhao</span>
       <span class="logo-line-after"><i></i></span>
     </a>
   </div>
@@ -221,7 +221,7 @@
             
             
               
-                Box Model
+                关于 Stacking Contexts
               
             
           </h1>
@@ -233,8 +233,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-19T23:48:45+08:00" content="2016-05-19">
-              2016-05-19
+            <time itemprop="dateCreated" datetime="2016-08-04T00:00:00+08:00" content="2016-08-04">
+              2016-08-04
             </time>
           </span>
 
@@ -261,22 +261,11 @@
       
 
       
-        <p>在 CSS 中，元素通过生成 box 表现在视觉格式化模型中。<br><a id="more"></a><br>简单的说，在一个盒子中：<br><strong>conent area</strong> - content edge/inner edge - content box<br><strong>padding area</strong> - padding edge - padding box<br><strong>border area</strong> - border edge - border box<br><strong>margin area</strong>  - margin edge/outer edge - margin box（只有它的 background 是透明的）</p>
-<p><code>margin</code>：<code>&lt;length&gt;</code> | <code>&lt;percentage&gt;</code> | <code>auto</code> | <code>inherit</code><br><code>margin</code>：<code>&lt;length&gt;</code> | <code>&lt;percentage&gt;</code> | <code>inherit</code></p>
-<p>初始值都为0；<br>它们的百分数值，包括垂直方向上的，都是以 containing block 的<code>width</code>值为基准；<br>margin 的<code>&lt;length&gt;</code>值可以为负数；<br>它们在一些 table 元素中会失效，其中<code>margin</code>不作用于<strong>非替换inline元素</strong>的垂直方向。</p>
-<h4 id="Collapsing-margins"><a href="#Collapsing-margins" class="headerlink" title="Collapsing margins"></a>Collapsing margins</h4><p>多个 <strong>相邻的</strong> <strong>垂直</strong><code>margin</code>会折叠。</p>
-<p>那么，什么情况会认为 margins 之间是 adjoining 的呢？<br>首先这几个 margins 所属的 boxes 都要满足：</p>
-<ul>
-<li>in-flow；</li>
-<li>是在同一个 BFC 中的 block-level box；</li>
-</ul>
-<p>所以有很多时候都是不会发生折叠的：<br><code>floated box</code> ，<code>absolutely positioned box</code>以及<code>根元素</code>都会 out-of-flow，还有 <code>inline-block box</code> 这些不属于 block-level box 的，<br>它们的 margin 不会和任何其他 margin 发生折叠，包括和它内部的 in-flow 子元素；<br>还有其他的会产生新的 BFC 的情况，当元素<code>overflow</code>值不是<code>visible</code>时，内部的子元素和它已经不属于同一个 BFC ，所以也不会 collapse。</p>
-<ul>
-<li>然后当然要满足的是，<code>margin</code>要属于垂直相邻<strong>vertically-adjacent</strong>的 box edges，意味着中间没有 <code>line boxes</code>，<code>clearance</code>，垂直方向的<code>padding</code>，<code>border</code>这些东西相隔。</li>
-</ul>
-<p>除了上下相邻的两个 box 之间的 bottom、top margin 以外，<br>第一个子元素和父元素的 top margin；<br>最后一个子元素和 <code>height</code>为<code>auto</code>的父元素的 bottom margin；</p>
-<p>或者如果一个元素的 box 里面<strong>什么也没有</strong>（没有 <code>line boxes</code>，<code>clearance</code>，垂直方向的<code>padding</code>，<code>border</code>，而且<code>min-height：0</code> ， <code>height：0/auto</code>,不过可以包含in-flow子元素的collapsed margin）的时候，它自己的 bottom、top margin；<br>都是垂直相邻的。</p>
-<p>总的来说，在一个flow中，block-level box <code>margin</code>的作用是为了保障它的  border box 在当前的 BFC 中，周围有一定的区域内是没有其它元素 border box 的，所以两个margin相邻时，只要取一个最大值就可以保证相同的效果。</p>
+        <div id="output">
+<p>做一个不写 <code>z-index: 999;</code> 的人。</p> <hr> 
+<p><a id="more"></a></p>
+<p>这个问题可能看起来并不是个很大的事情，有时候写到一些元素重叠的情况，会偶尔发现他们相互重叠的顺序和我们想象的不太一样。 这个问题涉及的概念就是 <code>Stacking Contexts</code> 层叠上下文，以及整个文档页面 layered presentation 的规则。</p> <p>在页面布局中，一个box的位置除了水平和竖直方向，还包含一个 <code>z轴</code> 的三维表现，在 canvas 上绘制渲染树的时候，就像 BFC 和 IFC 一样，我们用 stacking contexts 来描述盒子在 z 轴方向上的绘制环境，限定它们的层叠顺序；为了方便描述和理解，用一个可正可负可为 0 的整数 <code>stack level</code>， 来表示在一个 stacking context 中的按顺序依次排列的层级。</p> <p>所以首先，什么时候会产生新的 stacking contexts ？</p> <p>层叠上下文中两个很重要的属性是 <code>position</code> 和 <code>z-index</code>，当一个元素成为了 除 <code>static</code> 之外的 positioned element，就会拥有 z-index 属性值，当然这时默认值还是 <code>auto</code>，同时，每一个 positioned box 就拥有了 <code>stack level</code>，并且值为 0 ；如果改变元素的 z-index 属性值，它的 stack level 就也会变成相应的整数。</p> <p>所以是，根节点 html 会产生一个 root stacking context ，在后代元素中，当一个positioned element，设置了不为 <code>auto</code> 的 z-index 属性值的时候，就会产生新的层叠上下文。（不过有一个特例是， fixed 定位的元素不用设置 z-index 就直接会产生新上下文。</p> <h6 id="-css3-">当然除此之外还有其他情况，应用一些 CSS3 中的属性也有这个效果</h6> <p>然后就是在层叠上下文中元素的排序规则。</p> <p>从后到前：</p> <blockquote> <ol> <li>the background and borders of the element forming the stacking context.</li> <li>the child stacking contexts with negative stack levels (most negative first).</li> <li>the in-flow, non-inline-level, non-positioned descendants.</li> <li>the non-positioned floats.</li> <li>the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.</li> <li>the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.</li> <li>the child stacking contexts with positive stack levels (least positive first).</li> </ol> </blockquote> <h6 id="-">一脸懵逼...</h6> <p>总结一下是这样的。。。其实还是看 <code>position</code> 属性来分两种情况；在一个元素所产生的 stacking context 中： 最下面依次是元素的 background color , backgroubd image 和 border ； 接着它的后代元素主要分布在两种层级：</p> <ol> <li>所有的 positioned elements 中，产生新的层叠上下文的元素，按照 stack level 为负数，0 ，正数的顺序，由小到大依次从后到前排列，而其他没有产生新上下文的定位元素，当然也属于 stack level 为 0 的中间层； 那些 CSS3 的其他属性使元素产生新上下文的情况，我们可以认为它们为 <code>z-index: 0</code>，所以也属于 0 层 stack level ；</li> <li>其余普通的未定位元素处于 <code>负数的 stack level</code> 和 <code>0 层</code>之间：in flow 的元素中，inline-level 元素在前，block-level 元素在后，最后只剩下一类 out of flow 的元素 --- 未定位的浮动元素，就分布在它们之间 。</li> </ol> <p>在上面描述的每一层中，处于同一层中的元素再由它们在 <code>文档树中的顺序</code> 由底到高排列。 以此类推，这些排序规则在每一个 stacking context 中是递归的。层叠上下文之间可以嵌套，标准中形容一个层叠上下文是 <code>atomic</code>，封闭的，不可再分的，页面里的每一个box都会属于并且只属于一个 stacking context 。</p> <p>另外要注意的是，虽然“产生新的 stacking contexts ” 的 <code>z-index: 0</code> 和“没有产生新的上下文”的 <code>z-index: auto</code> 都被认为是在中间 stack level 为 0 的一层中，但是它们的区别体现在子代元素的上：</p> <p>包括“产生一个新 flow ”的未定位的 floats 以及 inline block ，这些没有产生新上下文的元素，它们内部的普通元素（也就是在 stack level 负层和 0 层之间的元素）会在当前环境下排序，就好像他们形成了一个新的上下文一样，但是一旦有某个子元素产生了新上下文，他就会跳出当前的这个 “普通层” 参与到真正的上下文的排序中。</p> <p>好困哦...先这样。</p>
+</div>
 
       
     </div>
@@ -297,24 +286,6 @@
     <footer class="post-footer">
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016-05-14/visual-formatting-model-1/" rel="next" title="视觉格式化模型（一）">
-                <i class="fa fa-chevron-left"></i> 视觉格式化模型（一）
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016-05-22/responsive-design/" rel="prev" title="移动端设备的响应式初步">
-                移动端设备的响应式初步 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
@@ -372,14 +343,14 @@
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
-               alt="wiia" />
-          <p class="site-author-name" itemprop="name">wiia</p>
+               alt="Zhao" />
+          <p class="site-author-name" itemprop="name">Zhao</p>
           <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -411,7 +382,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Collapsing-margins"><span class="nav-number">1.</span> <span class="nav-text">Collapsing margins</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#-css3-"><span class="nav-number">1.</span> <span class="nav-text">当然除此之外还有其他情况，应用一些 CSS3 中的属性也有这个效果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#-"><span class="nav-number">2.</span> <span class="nav-text">一脸懵逼...</span></a></li></ol></div>
             
           </div>
         </section>
@@ -434,7 +405,7 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">wiia</span>
+  <span class="author" itemprop="copyrightHolder">Zhao</span>
 </div>
 
 <div class="powered-by">
