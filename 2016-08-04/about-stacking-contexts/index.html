@@ -1,0 +1,528 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="做一个不写 z-index: 999; 的人。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="关于 Stacking Contexts">
+<meta property="og:url" content="http://wiia.github.io/2016-08-04/about-stacking-contexts/index.html">
+<meta property="og:site_name" content="Zhao">
+<meta property="og:description" content="做一个不写 z-index: 999; 的人。">
+<meta property="og:updated_time" content="2016-08-04T16:01:38.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="关于 Stacking Contexts">
+<meta name="twitter:description" content="做一个不写 z-index: 999; 的人。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"right","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 关于 Stacking Contexts | Zhao </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-right page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Zhao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                关于 Stacking Contexts
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-04T00:00:00+08:00" content="2016-08-04">
+              2016-08-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="output">
+<p>做一个不写 <code>z-index: 999;</code> 的人。</p> <hr> 
+<p><a id="more"></a></p>
+<p>这个问题可能看起来并不是个很大的事情，有时候写到一些元素重叠的情况，会偶尔发现他们相互重叠的顺序和我们想象的不太一样。 这个问题涉及的概念就是 <code>Stacking Contexts</code> 层叠上下文，以及整个文档页面 layered presentation 的规则。</p> <p>在页面布局中，一个box的位置除了水平和竖直方向，还包含一个 <code>z轴</code> 的三维表现，在 canvas 上绘制渲染树的时候，就像 BFC 和 IFC 一样，我们用 stacking contexts 来描述盒子在 z 轴方向上的绘制环境，限定它们的层叠顺序；为了方便描述和理解，用一个可正可负可为 0 的整数 <code>stack level</code>， 来表示在一个 stacking context 中的按顺序依次排列的层级。</p> <p>所以首先，什么时候会产生新的 stacking contexts ？</p> <p>层叠上下文中两个很重要的属性是 <code>position</code> 和 <code>z-index</code>，当一个元素成为了 除 <code>static</code> 之外的 positioned element，就会拥有 z-index 属性值，当然这时默认值还是 <code>auto</code>，同时，每一个 positioned box 就拥有了 <code>stack level</code>，并且值为 0 ；如果改变元素的 z-index 属性值，它的 stack level 就也会变成相应的整数。</p> <p>所以是，根节点 html 会产生一个 root stacking context ，在后代元素中，当一个positioned element，设置了不为 <code>auto</code> 的 z-index 属性值的时候，就会产生新的层叠上下文。（不过有一个特例是， fixed 定位的元素不用设置 z-index 就直接会产生新上下文。</p> <h6 id="-css3-">当然除此之外还有其他情况，应用一些 CSS3 中的属性也有这个效果</h6> <p>然后就是在层叠上下文中元素的排序规则。</p> <p>从后到前：</p> <blockquote> <ol> <li>the background and borders of the element forming the stacking context.</li> <li>the child stacking contexts with negative stack levels (most negative first).</li> <li>the in-flow, non-inline-level, non-positioned descendants.</li> <li>the non-positioned floats.</li> <li>the in-flow, inline-level, non-positioned descendants, including inline tables and inline blocks.</li> <li>the child stacking contexts with stack level 0 and the positioned descendants with stack level 0.</li> <li>the child stacking contexts with positive stack levels (least positive first).</li> </ol> </blockquote> <h6 id="-">一脸懵逼...</h6> <p>总结一下是这样的。。。其实还是看 <code>position</code> 属性来分两种情况；在一个元素所产生的 stacking context 中： 最下面依次是元素的 background color , background image 和 border ； 接着它的后代元素主要分布在两种层级：</p> <ol> <li>所有的 positioned elements 中，产生新的层叠上下文的元素，按照 stack level 为负数，0 ，正数的顺序，由小到大依次从后到前排列，而其他没有产生新上下文的定位元素，当然也属于 stack level 为 0 的中间层； 那些 CSS3 的其他属性使元素产生新上下文的情况，我们可以认为它们为 <code>z-index: 0</code>，所以也属于 0 层 stack level ；</li> <li>其余普通的未定位元素处于 <code>负数的 stack level</code> 和 <code>0 层</code>之间：in flow 的元素中，inline-level 元素在前，block-level 元素在后，最后只剩下一类 out of flow 的元素 --- 未定位的浮动元素，就分布在它们之间 。</li> </ol> <p>在上面描述的每一层中，处于同一层中的元素再由它们在 <code>文档树中的顺序</code> 由底到高排列。 以此类推，这些排序规则在每一个 stacking context 中是递归的。层叠上下文之间可以嵌套，标准中形容一个层叠上下文是 <code>atomic</code>，封闭的，不可再分的，页面里的每一个box都会属于并且只属于一个 stacking context 。</p> <p>另外要注意的是，虽然“产生新的 stacking contexts ” 的 <code>z-index: 0</code> 和“没有产生新的上下文”的 <code>z-index: auto</code> 都被认为是在中间 stack level 为 0 的一层中，但是它们的区别体现在子代元素的上：</p> <p>包括“产生一个新 flow ”的未定位的 floats 以及 inline block ，这些没有产生新上下文的元素，它们内部的普通元素（也就是在 stack level 负层和 0 层之间的元素）会在当前环境下排序，就好像他们形成了一个新的上下文一样，但是一旦有某个子元素产生了新上下文，他就会跳出当前的这个 “普通层” 参与到真正的上下文的排序中。</p> <p>好困哦...先这样。</p>
+</div>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016-05-22/responsive-design/" rel="next" title="移动端设备的响应式初步">
+                <i class="fa fa-chevron-left"></i> 移动端设备的响应式初步
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Zhao" />
+          <p class="site-author-name" itemprop="name">Zhao</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#-css3-"><span class="nav-number">1.</span> <span class="nav-text">当然除此之外还有其他情况，应用一些 CSS3 中的属性也有这个效果</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#-"><span class="nav-number">2.</span> <span class="nav-text">一脸懵逼...</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zhao</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
